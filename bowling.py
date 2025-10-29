@@ -16,16 +16,17 @@ class BowlingTest(unittest.TestCase):
     
 
 def calculate_total_score(score):
-     # turn to loop to sum ?
     if score == "":
         score = '0'
     elif score == 'X':
         score = '10'
     elif '/' in score:
         score = '10'
-    else:
-        # score = int(score) - sum this 
-
+    elif len(score) >= 2:
+       score = sum(list(map(int, score)))
+       print(score)
+    else :
+        score = int(score)
 
     return int(score)
 
@@ -37,3 +38,17 @@ if __name__ == '__main__':
 #  'X, 45, 4/, 32, X, 45, 4/, 32' - this equals 92 so ias the next smallest step to get
 # then make score logic e,g x == 10 
 # next step is to sum score? 
+
+
+    # score = score.split()
+    # print(score)
+    # for index, point in enumerate(score):
+    #      if point == 'X' or '/' in point:
+    #         score[index] = '10'
+    
+    # score = [int(x) for x in score]
+    # score = sum(score)
+    # print(score)
+    # return score
+    
+
