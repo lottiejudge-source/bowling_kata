@@ -13,18 +13,29 @@ class BowlingTest(unittest.TestCase):
     
     def test_result_of_open_frame(self):
         self.assertEqual(calculate_total_score("45"), 9)
+
+    # test of zero points - remove empty score - add to make invalid 
+    def test_result_of_zero_points(self):
+        self.assertEqual(calculate_total_score("-2 X"), 2)
+    
+    # def test_result_of_invalid_frame_length(self):
+    #     self.assertEqual()
     
 
 def calculate_total_score(score):
+
     if score == "":
         score = '0'
     elif score == 'X':
         score = '10'
     elif '/' in score:
         score = '10'
+    elif '-' in score:
+        score = score.replace('-', '0')
     elif len(score) >= 2:
        score = sum(list(map(int, score)))
        print(score)
+   
     else :
         score = int(score)
 
@@ -35,9 +46,10 @@ if __name__ == '__main__':
     unittest.main()
 
 
-#  'X, 45, 4/, 32, X, 45, 4/, 32' - this equals 92 so ias the next smallest step to get
-# then make score logic e,g x == 10 
-# next step is to sum score? 
+#  'X, 45, 4/, 32, X, 45, 4/, 32, X, 11'
+#  is the next step to have ten frames? which is a valid input, and then rework the logic to start the rules of bowling? 
+#  or is there a simpler way!? 
+
 
 
     # score = score.split()
