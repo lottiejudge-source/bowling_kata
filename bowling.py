@@ -45,6 +45,8 @@ def calculate_total_score(score):
         score = ['0' if x == '-' else x for x in score]
     if 'X' in score:
         score = ['10' if x == 'X' else x for x in score]
+        # I then need to add the next fram to the ten to get the correct score e.g 'X 13' would be 16
+
     for i, char in enumerate(score):
         if '/' == score[i]: 
             score = score[:i-1] + ['10'] + score[i+1:]
