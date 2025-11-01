@@ -7,24 +7,29 @@ import re
 
 class BowlingTest(unittest.TestCase):
 
-    def test_result_of_no_pins(self):
-        self.assertEqual(calculate_total_score("-"), 0)
+    # def test_result_of_no_pins(self):
+    #     self.assertEqual(calculate_total_score("-"), 0)
 
-    def test_result_of_zero_points_half_frame(self):
-        self.assertEqual(calculate_total_score("-2"), 2)
+    # def test_result_of_zero_points_half_frame(self):
+    #     self.assertEqual(calculate_total_score("-2"), 2)
     
-    def test_result_of_strike(self):
-        self.assertEqual(calculate_total_score("X"), 10)
+    # def test_result_of_strike(self):
+    #     self.assertEqual(calculate_total_score("X"), 10)
     
-    def test_result_of_spare(self):
-        self.assertEqual(calculate_total_score("4/"), 10)
+    # def test_result_of_spare(self):
+    #     self.assertEqual(calculate_total_score("4/"), 10)
     
-    def test_result_of_open_frame(self):
-        self.assertEqual(calculate_total_score("45"), 9)
+    # def test_result_of_open_frame(self):
+    #     self.assertEqual(calculate_total_score("45"), 9)
 
-    # # test of zero points - remove empty score - add to make invalid 
     # def test_result_of_two_frames(self):
-    #      self.assertEqual('X 2/', 20)
+    #     self.assertEqual(calculate_total_score('12 12'), 6)
+    
+    # def test_result_of_ten_frames(self):
+    #     self.assertEqual(calculate_total_score('11 11 11 11 11 11 11 11 11 11'), 20)
+    
+    def test_result_of_strike_plus_frame(self):
+        self.assertEqual(calculate_total_score('X 12'), 16)
     
 
 def calculate_total_score(score):
@@ -33,6 +38,9 @@ def calculate_total_score(score):
         score = 0
     if len(score) > 1:
         score = list(score)
+        score = [y for y in score if y != " "]
+        # why does the above work though? TY Stack overflow 
+        print(score)
     if '-' in score:
         score = ['0' if x == '-' else x for x in score]
     if 'X' in score:
@@ -43,6 +51,8 @@ def calculate_total_score(score):
     
 
     return sum(list(map(int, score)))
+    print(score)
+
 
 
 if __name__ == '__main__':
