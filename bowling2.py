@@ -33,23 +33,8 @@ class BowlingTest(unittest.TestCase):
     
 
 def calculate_total_score(score):
-    if score == "":
-        return 0
-    
-    total_score = list(score).copy()
-
-    total_score = [x for x in total_score if x != " "]    
-    print(score)
-    total_score = ['0' if x == '-' else x for x in total_score]
-    total_score = ['10' if x == 'X' else x for x in total_score]
-    
-    for i, char in enumerate(score):
-        if '/' == score[i]: 
-            total_score = total_score[:i-1] + ['10'] + total_score[i+1:]
-    
-
-    return sum(list(map(int, total_score)))
-
+    # lets start it as a list of rolls that are a singular point. then create rules based on that. 
+    return 0
 
 
 
